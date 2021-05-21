@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% extends  'template/base.html' %}
+
+{% load static %} 
+{% block content %}
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-info text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">Edit Menu</a>
+                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+               
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead bg-secondary text-white  text-center">
+            <div class="container d-flex align-items-center flex-column">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+                    {% endfor %}
+                {% endif %}
+                
+                {% if editMenu %}
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col" style="max-width: 30%;padding-top: 10px;"><label>Date of the Menu: </label><label></label></div>
+                        <div class="col" style="padding-top: 10px;">
+                            <input type="text" id="datemenu" readonly name="datemenu"  value="{{ Date }}" > 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" style="max-width: 30%;padding-top: 10px;"><label>Description of the Menu: </label><label></label></div>
+                        <div class="col" style="padding-top: 10px;padding-right: 10px;">
+                            <textarea name="editDescMenu" id="editDescMenu"  cols="30" rows="10">{{ editMenu.0.desc_menu }}</textarea>
+                            
+                        </div>
+                    </div>
+                    <button class=" btn btn-primary" style="background: #347ab8;margin-top: 27px;" >Save New Menu</button>
+                </form>
+                {% else %}
+                 <p>NO MENUS FOUND</p>
+                {% endif %}
+                    
+            
+            </div>
+               
+            </div>
+        </header>
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio bg-secondary" id="portfolio">
+            <div class="container">
+               
+            </div>
+        </section>
+        <!-- About Section-->
+
+          <section class="page-section portfolio bg-secondary" id="portfolio">
+            <div class="container">
+               
+            </div>
+        </section>
+         
+  
+{% endblock %}  
